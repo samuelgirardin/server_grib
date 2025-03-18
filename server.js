@@ -24,7 +24,10 @@ app.get('/api/grib-data', async (req, res) => {
   let url;
 
   if (!local) {
-    url = `https://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_0p25_1hr.pl?dir=%2Fgfs.${date}%2F00%2Fatmos&file=gfs.t00z.pgrb2.0p25.f${filename}&var_UGRD=on&var_VGRD=on&lev_10_m_above_ground=on`;
+    // ugrd & vgrd 10 m above ground
+   // url = `https://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_0p25_1hr.pl?dir=%2Fgfs.${date}%2F00%2Fatmos&file=gfs.t00z.pgrb2.0p25.f${filename}&var_UGRD=on&var_VGRD=on&lev_10_m_above_ground=on`;
+    // ugrd & vgrd 10 m above ground , wind gust surface
+    url = `https://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_0p25.pl?dir=%2Fgfs.${date}%2F00%2Fatmos&file=gfs.t00z.pgrb2.0p25.f${filename}&var_GUST=on&var_UGRD=on&var_VGRD=on&lev_10_m_above_ground=on&lev_surface=on`;
   } else {
     url = `http://localhost:3000/downloads/gfs.t00z.pgrb2.0p25.f${filename}`;
   }
